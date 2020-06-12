@@ -52,9 +52,8 @@ def pick_room():
 # travels and logs that direction, then loops.
 
 
-def travel_log(re=None):
-    if re is None:
-        re = [None]
+def travel_log():
+    re = [None]  # keep track of the way back
     b = True
     while b is not None:
         b = pick_room()
