@@ -49,6 +49,18 @@ def pick_room():
         return unexplored.pop()
     return None
 
+
+def check_keys(limit=None):
+    if limit == None:
+        return "requires integer limit"
+    if len(tgraph) == limit:
+        for _, keys in tgraph.items():
+            for _, v in keys.items():
+                if v == "?":
+                    return False
+        return True
+    return False
+
 # travels and logs that direction, then loops.
 
 
@@ -56,7 +68,7 @@ def travel_log():
     re = [None]  # keep track of the way back
     b = True
     count = 0
-    while b is not None and count < 993:
+    while b is not None:
         b = pick_room()
         if b is not None:
             a = int(player.current_room.id)
@@ -68,6 +80,9 @@ def travel_log():
         else:
             b = re.pop()
             count += 1
+            if check_keys(500):
+                # check to see if we have explored 500 rooms,
+                return
             if b is not None:
                 traversal_path.append(b)
                 player.travel(b)
