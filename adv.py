@@ -55,7 +55,8 @@ def pick_room():
 def travel_log():
     re = [None]  # keep track of the way back
     b = True
-    while b is not None:
+    count = 0
+    while b is not None and count < 993:
         b = pick_room()
         if b is not None:
             a = int(player.current_room.id)
@@ -66,9 +67,11 @@ def travel_log():
             tgraph[a][b] = int(player.current_room.id)
         else:
             b = re.pop()
+            count += 1
             if b is not None:
                 traversal_path.append(b)
                 player.travel(b)
+    print("STOPPED AT ROOM ", player.current_room.id)
 
 
 travel_log()
