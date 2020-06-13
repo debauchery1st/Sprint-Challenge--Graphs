@@ -67,7 +67,7 @@ def check_keys(limit=None):
 def travel_log():
     re = [None]  # keep track of the way back
     b = True
-    count = 0
+    # count = 0
     while b is not None:
         b = pick_room()
         if b is not None:
@@ -79,9 +79,10 @@ def travel_log():
             tgraph[a][b] = int(player.current_room.id)
         else:
             b = re.pop()
-            count += 1
+            # count += 1
             if check_keys(500):
                 # check to see if we have explored 500 rooms,
+                print("STOPPED AT ROOM ", player.current_room.id)
                 return
             if b is not None:
                 traversal_path.append(b)
